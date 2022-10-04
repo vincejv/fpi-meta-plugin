@@ -25,13 +25,30 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data transfer object containing the details of the contents of the Facebook Messenger message
+ *
+ * @author <a href="mailto:vincevillamora@gmail.com">Vince Villamora</a>
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
 public class MsgDtlDto extends AbsFieldDto {
+
+  /**
+   * Message id
+   */
   private String mid;
+
+  /**
+   * Textual contents of the message
+   */
   private String text;
+
+  /**
+   * If the message is a reply, this field will contain the details about it
+   */
   @JsonProperty("reply_to")
   private MsgDtlDto replyTo;
 }

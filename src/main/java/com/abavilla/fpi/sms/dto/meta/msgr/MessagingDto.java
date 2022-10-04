@@ -24,13 +24,35 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data transfer wrapping the information for the sender, recipient, timestamp and details about the message from
+ * Facebook messenger webhook
+ *
+ * @author <a href="mailto:vincevillamora@gmail.com">Vince Villamora</a>
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
 public class MessagingDto extends AbsFieldDto {
+
+  /**
+   * Sender of the message
+   */
   private ProfileDto sender;
+
+  /**
+   * Recipient of the message
+   */
   private ProfileDto recipient;
+
+  /**
+   * Message timestamp
+   */
   private Long timestamp;
+
+  /**
+   * Details of the message
+   */
   private MsgDtlDto message;
 }

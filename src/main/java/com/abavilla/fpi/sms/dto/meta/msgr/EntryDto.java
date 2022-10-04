@@ -26,12 +26,29 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data transfer object for holding an entry for an event from Meta's Facebook webhook
+ *
+ * @author <a href="mailto:vincevillamora@gmail.com">Vince Villamora</a>
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
 public class EntryDto extends AbsFieldDto {
+
+  /**
+   * Entry id
+   */
   private String id;
+
+  /**
+   * Entry time
+   */
   private Long time;
+
+  /**
+   * {@link List} of {@link MessagingDto}
+   */
   private List<MessagingDto> messaging;
 }

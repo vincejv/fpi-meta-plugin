@@ -21,7 +21,7 @@ package com.abavilla.fpi.sms.dto.meta;
 import java.util.List;
 
 import com.abavilla.fpi.fw.dto.AbsDto;
-import com.abavilla.fpi.fw.dto.AbsFieldDto;
+import com.abavilla.fpi.sms.dto.meta.msgr.EntryDto;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,6 +37,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @RegisterForReflection
 public class MetaHookEvtDto extends AbsDto {
+
+  /**
+   * Event type
+   */
   private String object;
-  private List<AbsFieldDto> entry;
+
+  /**
+   * Event entries
+   */
+  private List<EntryDto> entry;
 }

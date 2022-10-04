@@ -24,10 +24,19 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data transfer object containing the sender or recipient information for the Facebook Messenger message
+ *
+ * @author <a href="mailto:vincevillamora@gmail.com">Vince Villamora</a>
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
 public class ProfileDto extends AbsFieldDto {
+
+  /**
+   * Profile id
+   */
   private String id;
 }
