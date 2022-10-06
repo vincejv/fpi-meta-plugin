@@ -19,28 +19,15 @@
 package com.abavilla.fpi.meta.dto.msgr;
 
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * Data transfer object containing the sender or recipient information for the Facebook Messenger message
- *
- * @author <a href="mailto:vincevillamora@gmail.com">Vince Villamora</a>
- */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-public class ProfileDto extends AbsFieldDto {
-
-  /**
-   * Profile id
-   */
-  private String id;
-
-  @JsonProperty("user_ref")
-  private String userRef;
+public class ReferralDto extends AbsFieldDto {
+  private ProfileDto product;
 }

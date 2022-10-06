@@ -16,12 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.meta.entity;
+package com.abavilla.fpi.meta.dto.msgr;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
-import com.abavilla.fpi.fw.entity.mongo.AbsMongoItem;
-import io.quarkus.mongodb.panache.common.MongoEntity;
+import com.abavilla.fpi.fw.dto.AbsFieldDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,12 +31,46 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-@MongoEntity(collection = "event_log")
-public class MetaMsgEvt extends AbsMongoItem {
-  private String sender;
-  private String recipient;
-  private String metaMsgId;
-  private String content;
-  private String replyTo;
-  private LocalDateTime timestamp;
+public class MsgAttchmtDto extends AbsFieldDto {
+
+  private String type;
+  private PayloadDto payload;
+
+  @Data
+  @EqualsAndHashCode(callSuper = true)
+  @NoArgsConstructor
+  @RegisterForReflection
+  public static class PayloadDto extends AbsFieldDto {
+
+    private String url;
+    private String title;
+    @JsonProperty("sticker_id")
+    private String stickerId;
+    private Product product;
+
+    @Data
+    @EqualsAndHashCode(callSuper = true)
+    @NoArgsConstructor
+    @RegisterForReflection
+    public static class Product extends AbsFieldDto {
+
+      private List<Element> elements;
+
+      @Data
+      @EqualsAndHashCode(callSuper = true)
+      @NoArgsConstructor
+      @RegisterForReflection
+      public static class Element extends AbsFieldDto {
+        private String id;
+        @JsonProperty("retailer_id")
+        private String retailerId;
+        @JsonProperty("image_url")
+        private String imageUrl;
+        private String title;
+        private String subtitle;
+      }
+
+    }
+
+  }
 }

@@ -18,6 +18,8 @@
 
 package com.abavilla.fpi.meta.dto.msgr;
 
+import java.util.List;
+
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.runtime.annotations.RegisterForReflection;
@@ -51,4 +53,9 @@ public class MsgDtlDto extends AbsFieldDto {
    */
   @JsonProperty("reply_to")
   private MsgDtlDto replyTo;
+
+  private List<MsgAttchmtDto> attachments;
+
+  @JsonProperty("quick_reply")
+  private QuickReplyDto quickReply;
 }
