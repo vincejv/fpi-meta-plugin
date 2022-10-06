@@ -16,7 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.sms.dto.meta.msgr;
+package com.abavilla.fpi.meta.dto.msgr;
+
+import java.util.List;
 
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
 import io.quarkus.runtime.annotations.RegisterForReflection;
@@ -25,7 +27,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * Data transfer object containing the sender or recipient information for the Facebook Messenger message
+ * Data transfer object for holding an entry for an event from Meta's Facebook webhook
  *
  * @author <a href="mailto:vincevillamora@gmail.com">Vince Villamora</a>
  */
@@ -33,10 +35,20 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-public class ProfileDto extends AbsFieldDto {
+public class EntryDto extends AbsFieldDto {
 
   /**
-   * Profile id
+   * Entry id
    */
   private String id;
+
+  /**
+   * Entry time
+   */
+  private Long time;
+
+  /**
+   * {@link List} of {@link MessagingDto}
+   */
+  private List<MessagingDto> messaging;
 }

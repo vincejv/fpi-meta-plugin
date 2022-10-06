@@ -16,12 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.sms.dto.meta;
+package com.abavilla.fpi.meta.dto;
 
 import java.util.List;
 
 import com.abavilla.fpi.fw.dto.AbsDto;
-import com.abavilla.fpi.sms.dto.meta.msgr.EntryDto;
+import com.abavilla.fpi.meta.dto.msgr.EntryDto;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

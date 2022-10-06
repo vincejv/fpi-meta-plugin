@@ -16,18 +16,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.sms.dto.meta.msgr;
-
-import java.util.List;
+package com.abavilla.fpi.meta.dto.msgr;
 
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * Data transfer object for holding an entry for an event from Meta's Facebook webhook
+ * Data transfer object containing the details of the contents of the Facebook Messenger message
  *
  * @author <a href="mailto:vincevillamora@gmail.com">Vince Villamora</a>
  */
@@ -35,20 +34,21 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-public class EntryDto extends AbsFieldDto {
+public class MsgDtlDto extends AbsFieldDto {
 
   /**
-   * Entry id
+   * Message id
    */
-  private String id;
+  private String mid;
 
   /**
-   * Entry time
+   * Textual contents of the message
    */
-  private Long time;
+  private String text;
 
   /**
-   * {@link List} of {@link MessagingDto}
+   * If the message is a reply, this field will contain the details about it
    */
-  private List<MessagingDto> messaging;
+  @JsonProperty("reply_to")
+  private MsgDtlDto replyTo;
 }
