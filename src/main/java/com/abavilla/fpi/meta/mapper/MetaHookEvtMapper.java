@@ -26,13 +26,18 @@ import com.abavilla.fpi.fw.util.DateUtil;
 import com.abavilla.fpi.meta.dto.MetaHookEvtDto;
 import com.abavilla.fpi.meta.dto.msgr.EntryDto;
 import com.abavilla.fpi.meta.dto.msgr.MessagingDto;
-import com.abavilla.fpi.meta.dto.msgr.MetaMsgEvtDto;
+import com.abavilla.fpi.meta.dto.msgr.MsgAttchmtDto;
 import com.abavilla.fpi.meta.dto.msgr.MsgDtlDto;
 import com.abavilla.fpi.meta.dto.msgr.ProfileDto;
+import com.abavilla.fpi.meta.dto.msgr.ext.MetaMsgEvtAttchmtDto;
+import com.abavilla.fpi.meta.dto.msgr.ext.MetaMsgEvtDto;
+import com.abavilla.fpi.meta.util.MetaConst;
+import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.CDI,
@@ -50,6 +55,29 @@ public interface MetaHookEvtMapper extends IMapper {
         evt.setRecipient(profileDto(messagingDto.getRecipient()));
         evt.setTimestamp(DateUtil.convertLdtToStr(
             DateUtil.fromEpoch(messagingDto.getTimestamp())));
+
+        if (messagingDto.getMessage() != null && messagingDto.getMessage().getAttachments() != null) {
+          List<MetaMsgEvtAttchmtDto> mappedAttchmts = new ArrayList<>();
+          // map attachments
+          for (MsgAttchmtDto attachment : messagingDto.getMessage().getAttachments()) {
+            if (!StringUtils.equals(attachment.getType(), MetaConst.ATTCHMT_TYPE_TEMPLATE)) {
+              // single attachments
+              var mappedAttchmt = rootAttachmentToDto(attachment);
+              mappedAttchmts.add(mappedAttchmt);
+            } else {
+              // multiple attachments
+              if (attachment.getPayload() != null && attachment.getPayload().getProduct() != null
+                  && attachment.getPayload().getProduct().getElements() != null) {
+                for (MsgAttchmtDto.PayloadDto.Product.Element element : attachment.getPayload().getProduct().getElements()) {
+                  var mappedAttchmt = rootAttachmentToDto(attachment);
+                  productAttachmentToDto(mappedAttchmt, element);
+                  mappedAttchmts.add(mappedAttchmt);
+                }
+              }
+            }
+          }
+          evt.setAttachments(mappedAttchmts);
+        }
         metaMsgEvtList.add(evt);
       }
     }
@@ -57,8 +85,19 @@ public interface MetaHookEvtMapper extends IMapper {
   }
 
   @Mappings(value = {
+      @Mapping(target = "url", source = "payload.url"),
+      @Mapping(target = "title", source = "payload.title"),
+      @Mapping(target = "stickerId", source = "payload.stickerId"),
+  })
+  MetaMsgEvtAttchmtDto rootAttachmentToDto(MsgAttchmtDto originalAttachment);
+
+  void productAttachmentToDto(@MappingTarget MetaMsgEvtAttchmtDto target,
+                              MsgAttchmtDto.PayloadDto.Product.Element product);
+
+  @Mappings(value = {
       @Mapping(target = "metaMsgId", source = "mid"),
       @Mapping(target = "content", source = "text"),
+      @Mapping(target = "attachments", ignore = true)
   })
   MetaMsgEvtDto mapMsgDtl(MsgDtlDto dto);
 

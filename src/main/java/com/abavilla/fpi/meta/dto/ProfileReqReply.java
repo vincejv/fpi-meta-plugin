@@ -16,9 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.meta.dto.msgr;
+package com.abavilla.fpi.meta.dto;
 
-import com.abavilla.fpi.fw.dto.AbsFieldDto;
+import com.abavilla.fpi.fw.dto.AbsDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,9 +29,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-public class QuickReplyDto extends AbsFieldDto {
-  /**
-   * Dynamic payload specified by developer
-   */
-  private Object payload;
+public class ProfileReqReply extends AbsDto {
+  @JsonProperty("id")
+  private String id;
+  private String name;
+  @JsonProperty("profile_pic")
+  private String profilePic;
 }

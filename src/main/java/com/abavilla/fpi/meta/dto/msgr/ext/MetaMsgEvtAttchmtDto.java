@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.meta.dto.msgr;
+package com.abavilla.fpi.meta.dto.msgr.ext;
 
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
 import io.quarkus.runtime.annotations.RegisterForReflection;
@@ -28,9 +28,15 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-public class QuickReplyDto extends AbsFieldDto {
-  /**
-   * Dynamic payload specified by developer
-   */
-  private Object payload;
+public class MetaMsgEvtAttchmtDto extends AbsFieldDto {
+  private String url;
+  private String title;
+  private String stickerId;
+
+  private String id;
+  private String retailerId;
+  private String imageUrl;
+  private String subtitle;
+
+  private String type;
 }

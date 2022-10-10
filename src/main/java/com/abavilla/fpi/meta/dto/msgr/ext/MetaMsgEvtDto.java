@@ -16,7 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.meta.dto.msgr;
+package com.abavilla.fpi.meta.dto.msgr.ext;
+
+import java.util.List;
 
 import com.abavilla.fpi.fw.dto.AbsDto;
 import io.quarkus.runtime.annotations.RegisterForReflection;
@@ -35,4 +37,5 @@ public class MetaMsgEvtDto extends AbsDto {
   private String content;
   private String replyTo;
   private String timestamp;
+  private List<MetaMsgEvtAttchmtDto> attachments;
 }

@@ -19,7 +19,7 @@
 package com.abavilla.fpi.meta.config.codec;
 
 import com.abavilla.fpi.fw.util.MapperUtil;
-import com.abavilla.fpi.meta.dto.msgr.MetaMsgEvtDto;
+import com.abavilla.fpi.meta.dto.msgr.ext.MetaMsgEvtDto;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import io.vertx.core.buffer.Buffer;

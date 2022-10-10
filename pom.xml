@@ -27,7 +27,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>fpi-meta-plugin</artifactId>
-  <version>1.0.9-RC</version>
+  <version>1.0.12-RC</version>
 
   <properties>
 

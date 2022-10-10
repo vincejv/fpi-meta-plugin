@@ -18,7 +18,8 @@
 
 package com.abavilla.fpi.meta.dto.msgr;
 
-import com.abavilla.fpi.fw.dto.AbsFieldDto;
+import com.abavilla.fpi.fw.dto.AbsDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,9 +29,9 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-public class QuickReplyDto extends AbsFieldDto {
-  /**
-   * Dynamic payload specified by developer
-   */
-  private Object payload;
+public class MsgrReqReply extends AbsDto {
+  @JsonProperty("recipient_id")
+  private String recipientId;
+  @JsonProperty("message_id")
+  private String mid;
 }

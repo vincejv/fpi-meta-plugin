@@ -16,21 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.     *
  ******************************************************************************/
 
-package com.abavilla.fpi.meta.dto.msgr;
+package com.abavilla.fpi.meta.util;
 
-import com.abavilla.fpi.fw.dto.AbsFieldDto;
-import io.quarkus.runtime.annotations.RegisterForReflection;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+public class MetaConst {
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@RegisterForReflection
-public class QuickReplyDto extends AbsFieldDto {
-  /**
-   * Dynamic payload specified by developer
-   */
-  private Object payload;
+  public static final String ATTCHMT_TYPE_TEMPLATE = "template";
+
+  private MetaConst() { }
+
 }
