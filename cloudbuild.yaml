@@ -13,6 +13,9 @@ steps:
     id: "Cancel ongoing builds"
     entrypoint: 'bash'
   - name: gcr.io/cloud-builders/mvn
+    env:
+      - 'GITHUB_USERNAME=${_GITHUB_USERNAME}'
+      - 'GITHUB_TOKEN=${_GITHUB_TOKEN}'
     args:
       - '-s'
       - './.mvn/wrapper/settings.xml'
