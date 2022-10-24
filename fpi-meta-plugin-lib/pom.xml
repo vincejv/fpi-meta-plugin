@@ -16,8 +16,8 @@
   ~ You should have received a copy of the GNU General Public License         ~
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.    ~
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <licenses>
     <license>
       <name>The GNU General Public License v3.0</name>
@@ -41,36 +41,25 @@
     <tag>HEAD</tag>
   </scm>
 
-  <name>FPI Meta plugin parent POM</name>
+  <name>FPI Meta plugin shared library</name>
   <description>Plugin for FPI Framework to integrate with Meta Services</description>
   <url>https://github.com/vincejv/fpi-meta-plugin</url>
   <inceptionYear>2022</inceptionYear>
-  
-  <parent>
-    <groupId>com.abavilla</groupId>
-    <artifactId>fpi-framework-pom</artifactId>
-    <version>1.1.21</version>
-  </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>fpi-meta-plugin</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>fpi-meta-plugin-lib</artifactId>
   <version>0</version>
+  
+  <parent>
+    <artifactId>fpi-meta-plugin</artifactId>
+    <groupId>com.abavilla</groupId>
+    <version>0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
 
-  <modules>
-    <module>fpi-meta-plugin-lib</module>
-    <module>fpi-meta-plugin-core</module>
-  </modules>
+  <dependencies>
 
-  <properties>
-
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-
-    </dependencies>
-  </dependencyManagement>
+  </dependencies>
 
   <build>
     <plugins>
