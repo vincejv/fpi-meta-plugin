@@ -12,20 +12,18 @@ steps:
         done
     id: "Cancel ongoing builds"
     entrypoint: 'bash'
-  - name: gcr.io/cloud-builders/docker
+  - name: gcr.io/cloud-builders/mvn
+    env:
+      - 'GITHUB_USERNAME=${_GITHUB_USERNAME}'
+      - 'GITHUB_TOKEN=${_GITHUB_TOKEN}'
     args:
-      - build
-      - '--no-cache'
-      - '-t'
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
-      - '--build-arg=GITHUB_USERNAME=$_GITHUB_USERNAME'
-      - '--build-arg=GITHUB_TOKEN=$_GITHUB_TOKEN'
-      - .
-      - '-f'
-      - Dockerfile
+      - '-s'
+      - './.mvn/wrapper/settings.xml'
+      - '-B'
+      - 'javadoc:jar'
+      - 'source:jar'
+      - 'deploy'
     id: "Push to github maven repository"
-images:
-  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
 options:
   machineType: UNSPECIFIED
   substitutionOption: ALLOW_LOOSE
