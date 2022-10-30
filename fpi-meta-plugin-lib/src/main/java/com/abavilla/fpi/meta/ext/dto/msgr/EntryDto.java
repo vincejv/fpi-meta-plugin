@@ -21,6 +21,7 @@ package com.abavilla.fpi.meta.ext.dto.msgr;
 import java.util.List;
 
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -35,6 +36,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, defaultImpl = EntryDto.class)
 public class EntryDto extends AbsFieldDto {
 
   /**

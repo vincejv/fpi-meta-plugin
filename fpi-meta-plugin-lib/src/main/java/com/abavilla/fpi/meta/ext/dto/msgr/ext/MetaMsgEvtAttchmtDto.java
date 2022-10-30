@@ -19,6 +19,7 @@
 package com.abavilla.fpi.meta.ext.dto.msgr.ext;
 
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, defaultImpl = MetaMsgEvtAttchmtDto.class)
 public class MetaMsgEvtAttchmtDto extends AbsFieldDto {
   private String url;
   private String title;
