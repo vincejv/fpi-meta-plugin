@@ -22,7 +22,6 @@ import java.util.List;
 
 import com.abavilla.fpi.fw.dto.AbsFieldDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,7 +31,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @RegisterForReflection
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, defaultImpl = MsgAttchmtDto.class)
 public class MsgAttchmtDto extends AbsFieldDto {
 
   private String type;
