@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  SONAR_PROJECT_KEY: vincejv_fpi-framework
+  SONAR_PROJECT_KEY: vincejv_fpi-meta-plugin
   DEVELOPMENT_SYNC_BRANCH: development
 
 jobs:
