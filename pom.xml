@@ -57,11 +57,6 @@
   <packaging>pom</packaging>
   <version>0</version>
 
-  <modules>
-    <module>lib</module>
-    <module>core</module>
-  </modules>
-
   <properties>
 
   </properties>
@@ -71,5 +66,34 @@
 
     </dependencies>
   </dependencyManagement>
+
+  <profiles>
+
+    <profile>
+      <id>lib-only</id>
+      <activation>
+        <property>
+          <name>lib-only</name>
+        </property>
+      </activation>
+      <modules>
+        <module>lib</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>all-modules</id>
+      <activation>
+        <property>
+          <name>!lib-only</name>
+        </property>
+      </activation>
+      <modules>
+        <module>lib</module>
+        <module>core</module>
+      </modules>
+    </profile>
+
+  </profiles>
 
 </project>
